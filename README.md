@@ -1,8 +1,8 @@
 leap-three.js-particles
 =======================
 
-Simple particles test with Leap and Three.js WebGL
+Simple particles test with Leap and Three.js 
 
-Fork from Three.js examples http://threejs.org/examples/#webgl_particles_shapes
+Forked Three.js example http://threejs.org/examples/#webgl_particles_shapes
 
 try it here http://edumo.github.io/leap-three.js-particles/

@@ -76,32 +76,43 @@ function initLeap() {
 		// if (pauseOnGesture && obj.gestures.length > 0) {
 		// togglePause();
 		// }
+		
+		for ( var i = 0; i < 10; i++) {
+			dedo[i].x = 0;
+			dedo[i].y = 0;
+			dedo[i].z = 0;
+		}
 
-		if (obj.hands && obj.hands[0]) {
-			// console.log(hand.palmPosition[0]);
-			var hand = obj.hands[0];
-			// dedo.x = hand.stabilizedPalmPosition[0]*2;
-			// dedo.y = hand.stabilizedPalmPosition[1];
-			// dedo.z = hand.stabilizedPalmPosition[2]*2 -400;
-			var pointables = obj.pointables;
-
-			for ( var i = 0; i < 5; i++) {
-				//dedo[i].x = pointables[i].btipPosition[0] * 2;
-				//dedo[i].y = pointables[i].btipPosition[1] * 2;
-				//dedo[i].z = pointables[i].btipPosition[2] * 2;
-				dedo[i] = leapToScene(pointables[i].btipPosition,obj);
+		if (obj.hands) {
+			//if(obj.hands && obj.hands[1])
+			//console.log(dedo);
+		
+			for(var i = 0;i<obj.hands.length;i++){
+				// console.log(hand.palmPosition[0]);
+				var hand = obj.hands[i];
+				// dedo.x = hand.stabilizedPalmPosition[0]*2;
+				// dedo.y = hand.stabilizedPalmPosition[1];
+				// dedo.z = hand.stabilizedPalmPosition[2]*2 -400;
+				var pointables = obj.pointables;
+	
+				for ( var j = 0; j < 5; j++) {
+					//dedo[i].x = pointables[i].btipPosition[0] * 2;
+					//dedo[i].y = pointables[i].btipPosition[1] * 2;
+					//dedo[i].z = pointables[i].btipPosition[2] * 2;
+					dedo[i*5 +j] = leapToScene(pointables[i*5 + j].btipPosition,obj);
+				}
 			}
-
+			
 //			console.log(pointables[0].stabilizedTipPosition);
 
 		} else {
-			for ( var i = 0; i < 5; i++) {
+			for ( var i = 0; i < 10; i++) {
 				dedo[i].x = 0;
 				dedo[i].y = 0;
 				dedo[i].z = 0;
 			}
 		}
-
+		
 	};
 
 	// On socket close

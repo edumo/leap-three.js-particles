@@ -13,6 +13,10 @@ body {
 	margin: 0px;
 	overflow: hidden;
 }
+
+a{
+	color:green;
+}
 </style>
 </head>
 <body>
@@ -131,7 +135,7 @@ body {
 			info.style.top = '10px';
 			info.style.width = '100%';
 			info.style.textAlign = 'center';
-			info.innerHTML = 'Three.js - simple particle systems for Leap Controller, by <a href="http://edumo.net">edumo </a> ( forked: <a href="http://www.lab4games.net/zz85/blog">zz85</a>)<br> Click to pause/resume. Use one hand';
+			info.innerHTML = 'Three.js - simple particle systems for Leap Controller, by <a href="http://edumo.net">edumo </a> ( forked: <a href="http://threejs.org/examples/#webgl_particles_shapes">Particles Shapes</a> by <a href="http://www.lab4games.net/zz85/blog">zz85</a>)<br> Click to pause/resume.';
 			container.appendChild(info);
 
 			// CAMERA
@@ -160,12 +164,10 @@ body {
 			var theText = "LEAP + THREE.JS";
 
 			mouse = new THREE.Vector2();
-			dedo = [5];
-			dedo[0] = new THREE.Vector3();
-			dedo[1] = new THREE.Vector3();
-			dedo[2] = new THREE.Vector3();
-			dedo[3] = new THREE.Vector3();
-			dedo[4] = new THREE.Vector3();
+			dedo = [10];
+			for(var i = 0;i< 10;i++){
+				dedo[i] = new THREE.Vector3();
+			}
 			// Get text from hash
 
 			var hash = document.location.hash.substr(1);
@@ -458,22 +460,24 @@ body {
 
 					// TODO Create a PointOnShape Action/Zone in the particle engine
 
-					timeOnShapePath += 0.00035 * delta;
-					if (timeOnShapePath > 1)
-						timeOnShapePath -= 1;
+					//timeOnShapePath += 0.00035 * delta;
+					//if (timeOnShapePath > 1)
+					//	timeOnShapePath -= 1;
 
-					var pointOnShape = heartShape.getPointAt(timeOnShapePath);
+					//var pointOnShape = heartShape.getPointAt(timeOnShapePath);
 
-					emitterpos.x = pointOnShape.x * 5 - 100;
-					emitterpos.y = -pointOnShape.y * 5 + 400;
+					//emitterpos.x = pointOnShape.x * 5 - 100;
+					//emitterpos.y = -pointOnShape.y * 5 + 400;
 					emitterpos.x = dedo[currentDedo].x;// * (window.innerWidth);
 					emitterpos.y = dedo[currentDedo].y;// * (window.innerHeight);
 					emitterpos.z = dedo[currentDedo].z;// * (window.innerHeight);
 					currentDedo++;
-					if(currentDedo > 4){
+					
+					if(currentDedo > 9 ||dedo[currentDedo].x == 0 && dedo[currentDedo].y == 0 && dedo[currentDedo].z == 0 ){
 						currentDedo = 0;
 					}
 					//console.log(emitterpos);
+					//console.log(currentDedo);
 					// pointLight.position.copy( emitterpos );
 					/* if(currentDedo == 1){
 					pointLight.position.x = emitterpos.x;
@@ -482,7 +486,7 @@ body {
 					} */
 					particles.vertices[target] = p.position;
 
-					values_color[target].setHSL(currentDedo/5.0, 0.6, 0.1);
+					values_color[target].setHSL(0.5 + currentDedo/18.0, 0.6, 0.2);
 
 					//pointLight.color.setHSL(currentDedo/5.0, 0.8, 0.5);
 
